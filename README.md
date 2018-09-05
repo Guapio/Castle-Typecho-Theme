@@ -1,4 +1,4 @@
-# MDo-Typecho-Theme
+#Castle-Typecho-Theme
 一个基于MDUI编写的MD风格的Typecho主题
 
 demo站点：https://ohmyga.net
