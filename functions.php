@@ -68,8 +68,8 @@ function themeConfig($form) {
     'closemenu' => _t('默认隐藏侧边栏'),
 	'showarchives' => _t('显示按月归档'),
     'showcategory' => _t('显示文章分类'),
+    'showpage' => _t('显示独立页面'),
 	'showlogin' => _t('显示登陆按钮'),
-    'showcategory' => _t('显示文章分类'),
 	'showthemename' => _t('显示主题名(侧边可不显示 但底部必须保留)'),
   ),
   array('closemenu', 'showarchives', 'showcategory', 'showpage', 'showlogin', 'showthemename'), _t('抽屉侧边栏'));
