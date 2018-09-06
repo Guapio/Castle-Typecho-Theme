@@ -1,6 +1,10 @@
 # Castle-Typecho-Theme
 一个基于MDUI编写的MD风格的Typecho主题
 
-demo站点：https://ohmyga.net
+## Version
+1.0.0
 
-## 主题尚未完工，敬请期待。
+## 相关链接
+Demo站点：https://ohmyga.net
+主题介绍：https://ohmyga.net/castle.html
+更新日志：https://ohmyga.net/castle-update-log.html
