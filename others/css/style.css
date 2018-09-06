@@ -1,0 +1,63 @@
+﻿/*
+Theme: Castle
+Link: https://github.com/ohmyga233/castle-Typecho-Theme
+Author: ohmyga (https://ohmyga.net/)
+*/
+
+#moe-footer {
+    padding: 20px;
+ }
+
+.moe-main {
+    padding: 1px;
+    width: 100%;
+    height: 100%;
+ }
+ 
+.moe-menu-img {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    background-position: center center;
+    background-size: cover;
+}
+
+.moe-username {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    box-sizing: border-box;
+    padding: 20px;
+    color: #fff;
+    font-size: 17px;
+}
+
+.moe-info{
+    color: hsla(0,0%,100%,.7);
+    font-size: 13px;
+}
+
+.moe-logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 80px;
+    height: 80px;
+    border-radius: 65px;
+    background-position: center center;
+    background-size: cover;
+}
+
+#menu {
+    background: #fff;
+    font-size: 50px;
+    color:#000;
+}
+
+.moe-links {
+	text-decoration:none;
+}
+
+.avatar {
+	border-radius:100px;
+}
