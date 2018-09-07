@@ -26,7 +26,7 @@ a{
   <?php if ($this->have()): ?>
   <?php while($this->next()): ?>
   <div class="mdui-col-md-6 mdui-col-offset-md-3">
-  <div class="mdui-card">
+  <div class="mdui-card mdui-hoverable">
    <div class="mdui-card-media">
     <img src="<?php 
 		$ll = rand(1,5);
