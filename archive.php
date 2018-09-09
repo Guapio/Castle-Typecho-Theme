@@ -1,5 +1,6 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
 <?php $this->need('header.php'); ?>
+<?php $style = Typecho_Widget::widget('Widget_Options')->style; ?>
 
 
 <style>
@@ -13,7 +14,7 @@ a{
   <div class="mdui-row">
   <div class="mdui-col-md-8 mdui-col-offset-md-2">
    <div class="mdui-typo">
-    <h2><?php $this->archiveTitle(array(
+    <h2 class="<?php if ($style == "bg_style"){ ?>mdui-text-color-<?php echo Typecho_Widget::widget('Widget_Options')->icon_color; ?><?php }elseif ($style == "default_style"){}?>"><?php $this->archiveTitle(array(
             'category'  =>  _t('分类 %s 下的文章'),
             'search'    =>  _t('包含关键字 %s 的文章'),
             'tag'       =>  _t('标签 %s 下的文章'),
@@ -54,18 +55,16 @@ a{
   </div><br></div>
   <?php endwhile; ?>
  <br><br><br>
- <div class="mdui-col-md-6 mdui-col-offset-md-3">
- <div class="mdui-text-center">
- <?php $this->pageLink('<button class="mdui-btn mdui-color-theme mdui-float-left" style="border-radius:100px 0px 0px 100px; width:30px;"><i class="mdui-icon material-icons">arrow_back</i></button>','prev'); ?>
- <button class="mdui-btn" disabled><strong style="color:#000;"><?php if($this->_currentPage>1) echo $this->_currentPage;  else echo 1;?> / <?php echo ceil($this->getTotal() / $this->parameter->pageSize); ?></strong></button>
- <?php $this->pageLink('<button class="mdui-btn mdui-color-theme mdui-float-right" style="border-radius:0px 100px 100px 0px; width:30px;"><i class="mdui-icon material-icons">arrow_forward</i></button>','next'); ?></center>
+  <?php $this->pageLink('<button class="mdui-btn mdui-btn-icon mdui-color-theme mdui-float-left"><i class="mdui-icon material-icons">arrow_back</i></button>','prev'); ?>
+ <button class="mdui-btn" disabled><strong class="<?php if ($style == "bg_style"){ ?>mdui-text-color-<?php echo Typecho_Widget::widget('Widget_Options')->icon_color; ?><?php }elseif ($style == "default_style"){}?>"><?php if($this->_currentPage>1) echo $this->_currentPage;  else echo 1;?> / <?php echo ceil($this->getTotal() / $this->parameter->pageSize); ?></strong></button>
+ <?php $this->pageLink('<button class="mdui-btn mdui-btn-icon mdui-color-theme mdui-float-right"><i class="mdui-icon material-icons">arrow_forward</i></button>','next'); ?></center>
  </div></div>
   <?php else: ?>
   <br>
   <div class="mdui-col-md-8 mdui-col-offset-md-2">
-  <div class="mdui-card mdui-color-red"><div class="mdui-card-content">没有找到相关内容！</div></div></div>
+  <div class="mdui-card mdui-color-red mdui-hoverable"><div class="mdui-card-content">没有找到相关内容！</div></div></div>
   <?php if ($this->options->iwa && in_array('searchno', $this->options->iwa)): ?>
-  <div class="mdui-col-md-8 mdui-col-offset-md-2"><br><br><strong>试着搜索一下？</strong><br>
+  <div class="mdui-col-md-8 mdui-col-offset-md-2"><br><br><strong class="<?php if ($style == "bg_style"){ ?>mdui-text-color-<?php echo Typecho_Widget::widget('Widget_Options')->icon_color; ?><?php }elseif ($style == "default_style"){}?>">试着搜索一下？</strong><br>
   <form id="search" method="post" action="<?php $this->options->siteUrl(); ?>" role="search">
   <div class="mdui-textfield mdui-textfield-floating-label">
    <label class="mdui-textfield-label">输入你想搜索的内容并回车</label>

@@ -51,6 +51,24 @@ function themeConfig($form) {
   _t('请选择主题的强调颜色QWQ'));
   $form->addInput($accentcolor->multiMode());
   
+  $style = new Typecho_Widget_Helper_Form_Element_Select('style',array(
+    'default_style' => '默认MDUI风格',
+    'bg_style' => '背景图风格'
+  ),
+  'default_style',
+  _t('主题风格'),
+  _t('请选择主题的风格awa'));
+  $form->addInput($style->multiMode());
+  
+  $icon_color = new Typecho_Widget_Helper_Form_Element_Select('icon_color',array(
+    'white' => 'White',
+    'black' => 'Black'
+  ),
+  'white',
+  _t('整体颜色风格'),
+  _t('根据背景图设置颜色风格(默认风格无效)qwq..'));
+  $form->addInput($icon_color->multiMode());
+  
   $top = new Typecho_Widget_Helper_Form_Element_Checkbox('top', array(
   'topbtn' => _t('显示回到顶部按钮'),
   ),
@@ -84,6 +102,24 @@ function themeConfig($form) {
   array('authimg', 'searchno', 'flbq', 'appreciates'), _t('主页/文章/Archive设置'));
   $form->addInput($iwa->multiMode());
   
+  $others_setting = new Typecho_Widget_Helper_Form_Element_Checkbox('others_setting', array(
+  'origintitile' => _t('失去/恢复焦点标题变化'),
+  ),
+  array('origintitile'), _t('其他设置'));
+  $form->addInput($others_setting->multiMode());
+  
+  $sqjd = new Typecho_Widget_Helper_Form_Element_Text('sqjd', NULL, '页面崩溃了Σ( ° △ °|||)︴', _t('失去焦点标题'), _t('输入失去焦点时显示的标题，必须开启上面开关才有效'));
+  $form->addInput($sqjd);
+  
+  $hfjd = new Typecho_Widget_Helper_Form_Element_Text('hfjd', NULL, '又好了_(:3」∠)_', _t('恢复焦点标题'), _t('输入恢复焦点时显示的标题，必须开启上面开关才有效'));
+  $form->addInput($hfjd);
+  
+  $postcid = new Typecho_Widget_Helper_Form_Element_Text('postcid', NULL, NULL, _t('置顶文章CID'), _t('输入要置顶的文章Cid，多篇用,分格'));
+  $form->addInput($postcid);
+  
+  $bgimg = new Typecho_Widget_Helper_Form_Element_Text('bgimg', NULL, 'https://i.loli.net/2018/09/09/5b94db35f2295.jpg', _t('背景图'), _t('背景图(确保选择了背景图风格)，不填写显示/others/images/bg.jpg图片)'));
+  $form->addInput($bgimg);
+  
   $headimg = new Typecho_Widget_Helper_Form_Element_Text('headimg', NULL, NULL, _t('头像及站点LOGO'), _t('输入侧边抽屉头像及站点LOGO图片链接，不填写将不显示<br>QQ头像接口：https://q2.qlogo.cn/headimg_dl?dst_uin=QQ号&spec=640'));
   $form->addInput($headimg);
   
@@ -113,3 +149,7 @@ function themeConfig($form) {
   
 }
 
+function themeFields($layout) {
+    $wzimg = new Typecho_Widget_Helper_Form_Element_Text('wzimg', NULL, NULL, _t('文章封面图'), _t('如果不填将显示随机封面图'));
+    $layout->addItem($wzimg);
+}

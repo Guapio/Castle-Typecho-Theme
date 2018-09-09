@@ -1,5 +1,6 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
 <?php $this->need('header.php'); ?>
+<?php $style = Typecho_Widget::widget('Widget_Options')->style; ?>
 
 <!-- 内容区 -->
  <div class="mdui-container" id="moe-main">
@@ -128,5 +129,28 @@
  <?php $this->need('comments.php'); ?>
 
 <br>
- 
+ <div class="<?php if ($style == "bg_style"){}elseif ($style == "default_style"){ ?>mdui-color-<?php echo Typecho_Widget::widget('Widget_Options')->themecolor; ?><?php } ?>" style="padding-top:25px; padding-bottom:25px; width:100%; background-color:rgba(0, 0, 0, 0.6);">
+  <div class="mdui-container">
+   <div class="mdui-row">
+   <div class="mdui-col-md-6 mdui-float-left mdui-hidden-md-up text-color">
+     <span style="color:#E0E0E0;"><i class="mdui-icon material-icons" style="margin-top:-2.5px;">arrow_back</i> 上一篇</span>
+     <br><span style="font-size:18px"><strong class="mdui-text-color-white"><?php $this->thePrev("<div class='mdui-text-truncate' style='max-width: 130px;'>%s</div>","没有了"); ?></strong></span>
+    </div>
+    <div class="mdui-col-md-6 mdui-float-left mdui-hidden-sm-down text-color">
+     <span style="color:#E0E0E0;"><i class="mdui-icon material-icons" style="margin-top:-2.5px;">arrow_back</i> 上一篇</span>
+     <br><span style="font-size:18px"><strong class="mdui-text-color-white"><?php $this->thePrev('%s','没有了'); ?></strong></span>
+    </div>
+    <div class="mdui-col-md-6 mdui-float-right mdui-hidden-sm-down text-color" style="text-align:right">
+     <span style="color:#E0E0E0;">下一篇 <i class="mdui-icon material-icons" style="margin-top:-2.5px;">arrow_forward</i></span>
+     <br><span style="font-size:18px"><strong class="test-color mdui-text-color-white"><?php $this->theNext('%s','没有了'); ?></strong></span>
+    </div>
+    <div class="mdui-col-md-6 mdui-float-right mdui-hidden-md-up text-color" style="text-align:left">
+     <span style="color:#E0E0E0;">下一篇 <i class="mdui-icon material-icons" style="margin-top:-2.5px;">arrow_forward</i></span>
+     <br><span style="font-size:18px"><strong class="mdui-text-color-white"><?php $this->theNext("<div class='mdui-text-truncate' style='max-width: 130px;'>%s</div>",'没有了'); ?></strong></span>
+    </div>    
+   </div>
+  </div>
+ </div>
+
+
  <?php $this->need('footer.php'); ?>

@@ -23,7 +23,7 @@
   <link href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
  
   <!-- JS -->
-  <script src="<?php $this->options->themeUrl('others/js/jquery.js'); ?>" type="text/javascript"></script>
+  <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
   <!-- MDUI JS -->
   <script src="https://cdnjs.loli.net/ajax/libs/mdui/0.4.1/js/mdui.min.js"></script>
  
@@ -32,6 +32,36 @@
   
   <!-- Typecho其他head信息 -->
   <?php $this->header(); ?>
+  
+  <?php
+  $style = Typecho_Widget::widget('Widget_Options')->style;
+  if ($style == "bg_style"){ ?>
+  <!-- bg_style -->
+  <style>
+  body{ 
+    background-image: url(<?php if ($this->options->bgimg){ $this->options->bgimg(); }else{ $this->options->themeUrl("others/images/bg.jpg"); }?>); 
+	background-size: cover; 
+	background-position: 50% 50%; 
+	background-attachment: fixed; 
+	background-repeat: no-repeat; 
+  } 
+
+  .mcname-header{ 
+    background-color:rgba(0, 0, 0, 0);
+	color: #000; 
+  }
+
+  .mdui-card{ 
+    background-color:rgba(255, 255, 255, 0.6);
+  }
+  
+  #menu {
+    background: rgba(255, 255, 255, 0.2);
+    font-size: 50px;
+    color:#000;
+  }
+  </style>
+  <?php }elseif ($style == "default_style"){ }?>
  </head>
  
  <body class="mdui-theme-primary-<?php echo Typecho_Widget::widget('Widget_Options')->themecolor; ?> mdui-theme-accent-<?php echo Typecho_Widget::widget('Widget_Options')->accentcolor; ?> mdui-appbar-with-toolbar">
@@ -39,25 +69,26 @@
     <div class="browsehappy" role="dialog"><?php _e('当前网页 <strong>不支持</strong> 你正在使用的浏览器. 为了正常的访问, 请 <a href="http://browsehappy.com/">升级你的浏览器</a>'); ?>.</div>
  <![endif]-->
   <!-- 头部 -->
-  <header class="mdui-appbar mdui-appbar-fixed mdui-headroom">
-   <div class="mdui-toolbar mdui-color-theme">
-    <span class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#menu', swipe: true}"><i class="mdui-icon material-icons">menu</i></span>
-    <a href="<?php $this->options->siteUrl(); ?>" class="mdui-typo-title" style="text-shadow:1px 1px 0px #616161"><strong><?php $this->options->title() ?></strong></a>
+  <header class="<?php if ($style == "bg_style"){ ?>mdui-appbar mdui-shadow-0 mdui-appbar-fixed mdui-headroom mdui-headroom-pinned-top mcname-header<?php }elseif ($style == "default_style"){?>mdui-appbar mdui-appbar-fixed mdui-headroom<?php } ?>">
+  <div class="mdui-progress mdui-hidden" id="load"><div class="mdui-progress-indeterminate"></div></div>
+   <div class="<?php if ($style == "bg_style"){ ?>mdui-toolbar mdui-appbar-scroll-hide<?php }elseif ($style == "default_style"){?>mdui-toolbar mdui-color-theme<?php } ?>">
+    <span class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#menu', swipe: true}"><i class="mdui-icon material-icons <?php if ($style == "bg_style"){ ?>mdui-text-color-<?php echo Typecho_Widget::widget('Widget_Options')->icon_color; ?><?php }elseif ($style == "default_style"){}?>">menu</i></span>
+    <a href="<?php $this->options->siteUrl(); ?>" class="mdui-typo-title <?php if ($style == "bg_style"){ ?>mdui-text-color-<?php echo Typecho_Widget::widget('Widget_Options')->icon_color; ?><?php }elseif ($style == "default_style"){}?>" style="text-shadow:1px 1px 0px #616161;"><strong><?php $this->options->title() ?></strong></a>
     <div class="mdui-toolbar-spacer"></div>
 	<?php if ($this->options->tools && in_array('searchbtnp', $this->options->tools)): ?>
 	<div class="mdui-hidden-xs-down">
 	 <div class="mdui-textfield mdui-textfield-expandable mdui-float-right" style="margin-top:18px;">
-      <button class="mdui-textfield-icon mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></button>
+      <button class="mdui-textfield-icon mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons <?php if ($style == "bg_style"){ ?>mdui-text-color-<?php echo Typecho_Widget::widget('Widget_Options')->icon_color; ?><?php }elseif ($style == "default_style"){}?>">search</i></button>
 	  <form id="search" method="post" action="<?php $this->options->siteUrl(); ?>" role="search">
-      <input class="mdui-textfield-input" type="text" name="s" placeholder="输入你想搜索的内容并回车"/>
+      <input class="mdui-textfield-input <?php if ($style == "bg_style"){ ?>mdui-text-color-<?php echo Typecho_Widget::widget('Widget_Options')->icon_color; ?><?php }elseif ($style == "default_style"){}?>" type="text" name="s" placeholder="输入你想搜索的内容并回车"/>
 	  </form>
-      <button class="mdui-textfield-close mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">close</i></button>
+      <button class="mdui-textfield-close mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons <?php if ($style == "bg_style"){ ?>mdui-text-color-<?php echo Typecho_Widget::widget('Widget_Options')->icon_color; ?><?php }elseif ($style == "default_style"){}?>">close</i></button>
      </div>
 	</div>
 	<?php endif; ?>
 	<div class="mdui-hidden-sm-up">
 	 <?php if ($this->options->tools && in_array('searchbtnm', $this->options->tools)): ?>
-	 <span class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search-ck'}"><i class="mdui-icon material-icons">search</i></span>
+	 <span class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search-ck'}"><i class="mdui-icon material-icons <?php if ($style == "bg_style"){ ?>mdui-text-color-<?php echo Typecho_Widget::widget('Widget_Options')->icon_color; ?><?php }elseif ($style == "default_style"){}?>">search</i></span>
 	 <?php endif; ?>
 	</div>
    </div>
@@ -84,6 +115,8 @@
 
   <!-- 侧边抽屉 -->
  <div class="mdui-drawer <?php if ($this->options->menu && in_array('closemenu', $this->options->menu)): ?>mdui-drawer-close<?php endif; ?>" id="menu">
+ <?php if ($style == "bg_style"){ ?>
+ <?php }elseif ($style == "default_style"){?>
  <?php if ($this->options->headbg): ?>
  <div class="moe-menu-img" data-original="<?php $this->options->headbg(); ?>" style="height:200px;background: url(<?php $this->options->headbg(); ?>);background-size:auto 200px;">
  <?php else: ?>
@@ -95,20 +128,21 @@
  <span class="moe-info"><?php $this->options->description() ?></span></strong>
  </div>
  </div>
+ <?php } ?>
   <ul class="mdui-list" mdui-collapse="{accordion: true}">
   <li class="mdui-list-item mdui-ripple">
-   <i class="mdui-list-item-icon mdui-icon material-icons">home</i>
-   <a href="<?php $this->options->siteUrl(); ?>" class="mdui-list-item-content">首页</a>
+   <i class="mdui-list-item-icon mdui-icon material-icons <?php if ($style == "bg_style"){ ?>mdui-text-color-<?php echo Typecho_Widget::widget('Widget_Options')->icon_color; ?><?php }elseif ($style == "default_style"){}?>">home</i>
+   <a href="<?php $this->options->siteUrl(); ?>" class="mdui-list-item-content <?php if ($style == "bg_style"){ ?>mdui-text-color-<?php echo Typecho_Widget::widget('Widget_Options')->icon_color; ?><?php }elseif ($style == "default_style"){}?>">首页</a>
   </li>
 
   <?php if ($this->options->menu && in_array('showarchives', $this->options->menu)): ?>
   <li class="mdui-collapse-item">
   <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
-   <i class="mdui-list-item-icon mdui-icon material-icons">access_time</i>
-   <div class="mdui-list-item-content">归档</div>
-   <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+   <i class="mdui-list-item-icon mdui-icon material-icons <?php if ($style == "bg_style"){ ?>mdui-text-color-<?php echo Typecho_Widget::widget('Widget_Options')->icon_color; ?><?php }elseif ($style == "default_style"){}?>">access_time</i>
+   <div class="mdui-list-item-content <?php if ($style == "bg_style"){ ?>mdui-text-color-<?php echo Typecho_Widget::widget('Widget_Options')->icon_color; ?><?php }elseif ($style == "default_style"){}?>">归档</div>
+   <i class="mdui-collapse-item-arrow mdui-icon material-icons <?php if ($style == "bg_style"){ ?>mdui-text-color-<?php echo Typecho_Widget::widget('Widget_Options')->icon_color; ?><?php }elseif ($style == "default_style"){}?>">keyboard_arrow_down</i>
   </div>
-  <ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
+  <ul class="mdui-collapse-item-body mdui-list mdui-list-dense <?php if ($style == "bg_style"){ ?>mdui-text-color-<?php echo Typecho_Widget::widget('Widget_Options')->icon_color; ?><?php }elseif ($style == "default_style"){}?>">
    <?php $this->widget('Widget_Contents_Post_Date', 'type=month&format=F Y')->parse('<a href="{permalink}" class="mdui-list-item mdui-ripple">{date}</a>'); ?>
   </ul>
   </li>
@@ -117,11 +151,11 @@
   <?php if ($this->options->menu && in_array('showcategory', $this->options->menu)): ?>
   <li class="mdui-collapse-item">
   <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
-   <i class="mdui-list-item-icon mdui-icon material-icons">view_list</i>
-   <div class="mdui-list-item-content">分类</div>
-   <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+   <i class="mdui-list-item-icon mdui-icon material-icons <?php if ($style == "bg_style"){ ?>mdui-text-color-<?php echo Typecho_Widget::widget('Widget_Options')->icon_color; ?><?php }elseif ($style == "default_style"){}?>">view_list</i>
+   <div class="mdui-list-item-content <?php if ($style == "bg_style"){ ?>mdui-text-color-<?php echo Typecho_Widget::widget('Widget_Options')->icon_color; ?><?php }elseif ($style == "default_style"){}?>">分类</div>
+   <i class="mdui-collapse-item-arrow mdui-icon material-icons <?php if ($style == "bg_style"){ ?>mdui-text-color-<?php echo Typecho_Widget::widget('Widget_Options')->icon_color; ?><?php }elseif ($style == "default_style"){}?>">keyboard_arrow_down</i>
   </div>
-  <ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
+  <ul class="mdui-collapse-item-body mdui-list mdui-list-dense <?php if ($style == "bg_style"){ ?>mdui-text-color-<?php echo Typecho_Widget::widget('Widget_Options')->icon_color; ?><?php }elseif ($style == "default_style"){}?>">
   <?php $this->widget('Widget_Metas_Category_List')->parse('<a href="{permalink}" class="mdui-list-item mdui-ripple">{name} &nbsp; <span style="background:#66BB6A; color:#FFF; line-heigh:40px; text-align:center; font-size:10px; border-radius:100px; padding-top:3px; padding-bottom:2px; padding-left:7px; padding-right:7px;">{count}</span></a>'); ?>
   </ul>
   </li>
@@ -130,11 +164,11 @@
   <?php if ($this->options->menu && in_array('showpage', $this->options->menu)): ?>
   <li class="mdui-collapse-item">
   <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
-   <i class="mdui-list-item-icon mdui-icon material-icons">view_carousel</i>
-   <div class="mdui-list-item-content">页面</div>
-   <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+   <i class="mdui-list-item-icon mdui-icon material-icons <?php if ($style == "bg_style"){ ?>mdui-text-color-<?php echo Typecho_Widget::widget('Widget_Options')->icon_color; ?><?php }elseif ($style == "default_style"){}?>">view_carousel</i>
+   <div class="mdui-list-item-content <?php if ($style == "bg_style"){ ?>mdui-text-color-<?php echo Typecho_Widget::widget('Widget_Options')->icon_color; ?><?php }elseif ($style == "default_style"){}?>">页面</div>
+   <i class="mdui-collapse-item-arrow mdui-icon material-icons <?php if ($style == "bg_style"){ ?>mdui-text-color-<?php echo Typecho_Widget::widget('Widget_Options')->icon_color; ?><?php }elseif ($style == "default_style"){}?>">keyboard_arrow_down</i>
   </div>
-  <ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
+  <ul class="mdui-collapse-item-body mdui-list mdui-list-dense <?php if ($style == "bg_style"){ ?>mdui-text-color-<?php echo Typecho_Widget::widget('Widget_Options')->icon_color; ?><?php }elseif ($style == "default_style"){}?>">
   <?php $this->widget('Widget_Contents_Page_List')->to($pages); ?>
   <?php while($pages->next()): ?>
   <?php if($this->is('page', $pages->slug)): ?><?php endif; ?>
@@ -148,8 +182,8 @@
   <div class="mdui-divider"></div>
   
   <li class="mdui-list-item mdui-ripple">
-   <i class="mdui-list-item-icon mdui-icon material-icons">account_circle</i>
-   <a href="<?php echo "http://".$_SERVER['SERVER_NAME']."/admin/"; ?>" class="mdui-list-item-content">登陆</a>
+   <i class="mdui-list-item-icon mdui-icon material-icons <?php if ($style == "bg_style"){ ?>mdui-text-color-<?php echo Typecho_Widget::widget('Widget_Options')->icon_color; ?><?php }elseif ($style == "default_style"){}?>">account_circle</i>
+   <a href="<?php echo "http://".$_SERVER['SERVER_NAME']."/admin/"; ?>" class="mdui-list-item-content <?php if ($style == "bg_style"){ ?>mdui-text-color-<?php echo Typecho_Widget::widget('Widget_Options')->icon_color; ?><?php }elseif ($style == "default_style"){}?>">登陆</a>
   </li>
   <?php endif; ?>
   
@@ -157,8 +191,8 @@
   <div class="mdui-divider"></div>
  
   <li class="mdui-list-item mdui-ripple">
-   <i class="mdui-list-item-icon mdui-icon material-icons">info</i>
-   <a href="https://ohmyga.net/castle.html" class="mdui-list-item-content" target="_blank">主题 Castle</a>
+   <i class="mdui-list-item-icon mdui-icon material-icons <?php if ($style == "bg_style"){ ?>mdui-text-color-<?php echo Typecho_Widget::widget('Widget_Options')->icon_color; ?><?php }elseif ($style == "default_style"){}?>">info</i>
+   <a href="https://ohmyga.net/castle.html" class="mdui-list-item-content <?php if ($style == "bg_style"){ ?>mdui-text-color-<?php echo Typecho_Widget::widget('Widget_Options')->icon_color; ?><?php }elseif ($style == "default_style"){}?>" target="_blank">主题 Castle</a>
   </li>
   <?php endif; ?>
   

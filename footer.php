@@ -9,8 +9,8 @@ var scrolltotop={
 		scrollduration:400, //滚动过渡时间
 		fadeduration:[500,100] //淡出淡现消失
 	},
-	controlHTML:'<button class="mdui-fab mdui-ripple mdui-color-theme-accent" style="margin-right:20px;"><i class="mdui-icon material-icons">arrow_upward</i></button>', //返回顶部按钮
-	controlattrs:{offsetx:0,offsety:5},//返回按钮固定位置
+	controlHTML:'<button class="mdui-fab mdui-ripple mdui-color-theme-accent"><i class="mdui-icon material-icons">arrow_upward</i></button>', //返回顶部按钮
+	controlattrs:{offsetx:0,offsety:0},//返回按钮固定位置
 	anchorkeyword:"#top",
 	state:{
 		isvisible:false,
@@ -52,13 +52,33 @@ var scrolltotop={
 			var iebrws=document.all;
 			mainobj.cssfixedsupport=!iebrws||iebrws&&document.compatMode=="CSS1Compat"&&window.XMLHttpRequest;
 			mainobj.$body=(window.opera)?(document.compatMode=="CSS1Compat"?$("html"):$("body")):$("html,body");
-			mainobj.$control=$('<div id="topcontrol" >'+mainobj.controlHTML+"</div>").css({position:mainobj.cssfixedsupport?"fixed":"absolute",bottom:mainobj.controlattrs.offsety,right:mainobj.controlattrs.offsetx,opacity:0,cursor:"pointer"}).attr({title:"返回顶部"}).click(function(){mainobj.scrollup();return false;}).appendTo("body");if(document.all&&!window.XMLHttpRequest&&mainobj.$control.text()!=""){mainobj.$control.css({width:mainobj.$control.width()});}mainobj.togglecontrol();
+			mainobj.$control=$('<div id="topcontrol" >'+mainobj.controlHTML+"</div>").css({position:mainobj.cssfixedsupport?"fixed":"absolute",bottom:"5em",right:"1em",opacity:0,cursor:"pointer"}).attr({title:"返回顶部"}).click(function(){mainobj.scrollup();return false;}).appendTo("body");if(document.all&&!window.XMLHttpRequest&&mainobj.$control.text()!=""){mainobj.$control.css({width:mainobj.$control.width()});}mainobj.togglecontrol();
 			$('a[href="'+mainobj.anchorkeyword+'"]').click(function(){mainobj.scrollup();return false;});
 			$(window).bind("scroll resize",function(e){mainobj.togglecontrol();});
 		});
 	}
 };
 scrolltotop.init();
+</script>
+<?php endif; ?>
+
+
+<?php if ($this->options->others_setting && in_array('origintitile', $this->options->others_setting)): ?>
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '<?php $this->options->sqjd(); ?>';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '<?php $this->options->hfjd(); ?>';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
 </script>
 <?php endif; ?>
 
@@ -108,7 +128,8 @@ scrolltotop.init();
 	 <?php if ($this->options->miibeian): ?>
      <a href="http://www.miitbeian.gov.cn/" style="color:#fff;" target="_blank"><?php $this->options->miibeian(); ?></a><br>
 	 <?php endif; ?>
-     Powered By Typecho
+     Powered By Typecho 
+	 </div>
     </div>
     <!-- 大屏幕的情况下显示 -->
             
@@ -118,7 +139,8 @@ scrolltotop.init();
 	 <?php if ($this->options->miibeian): ?>
      <a href="http://www.miitbeian.gov.cn/" style="color:#fff;" target="_blank"><?php $this->options->miibeian(); ?></a><br>
 	 <?php endif; ?>
-     Powered By Typecho
+     Powered By Typecho 
+	 </div>
     </div>
     <!-- 小屏幕的情况下显示 -->
             

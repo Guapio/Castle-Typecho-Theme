@@ -10,8 +10,9 @@
  
  if (!defined('__TYPECHO_ROOT_DIR__')) exit;
  $this->need('header.php');
- ?>
+ $this->need('topping.php');
  
+?>
  <style>
  a{
 	 color:#fff;
@@ -24,17 +25,14 @@
  <?php //文章循环 ?>
  <?php while($this->next()): ?>
  <div class="mdui-col-md-6 mdui-col-offset-md-3">
-  <div class="mdui-card mdui-hoverable">
+  <div class="mdui-card mdui-hoverable index-animation">
    <div class="mdui-card-media">
-    <img src="<?php 
+    <img src="<?php if(!empty($this->fields->wzimg)){ echo ''.$this->fields->wzimg; }else{
 		$ll = rand(1,5);
-		$wimg = "r";
-		if ($wimg == "r") {
-		$this->options->themeUrl("api/pic.php?l=".$ll.""); }
-		?>" class="mdui-img-fluid">
+		$this->options->themeUrl("api/pic.php?l=".$ll.""); }?>" class="mdui-img-fluid">
 	<div class="mdui-card-media-covered">
      <div class="mdui-card-primary">
-     <div class="mdui-card-primary-title"><?php $this->title() ?></div>
+     <div class="mdui-card-primary-title"><?php $this->sticky(); $this->title() ?></div>
      <div class="mdui-card-primary-subtitle"><i class="mdui-icon material-icons">local_offer</i> <?php $this->category(','); ?><div class="mdui-float-right"><i class="mdui-icon material-icons">forum</i>评论: <?php $this->commentsNum('%d 条'); ?></div></div>
     </div>
     </div>
@@ -48,15 +46,17 @@
     <div class="mdui-card-header-title"><?php $this->author(); ?></div>
     <div class="mdui-card-header-subtitle">Time: <time datetime="<?php $this->date('c'); ?>" itemprop="datePublished"><?php $this->date(); ?></time></div>
    </div>
-   <a href="<?php $this->permalink() ?>"><button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent mdui-float-right" style="margin-top:20px; margin-right:20px;">阅读<i class="mdui-icon material-icons">chevron_right</i></button></a>
+   <a href="<?php $this->permalink() ?>"><button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent mdui-float-right mdui-btn-icon" style="margin-top:16px; margin-right:20px;"><i class="mdui-icon material-icons">chevron_right</i></button></a>
   </div><br>
  </div>
  <?php endwhile; ?>
  <div class="mdui-col-md-6 mdui-col-offset-md-3">
  <div class="mdui-text-center">
- <?php $this->pageLink('<button class="mdui-btn mdui-color-theme mdui-float-left" style="border-radius:100px 0px 0px 100px; width:30px;"><i class="mdui-icon material-icons">arrow_back</i></button>','prev'); ?>
- <button class="mdui-btn" disabled><strong style="color:#000;"><?php if($this->_currentPage>1) echo $this->_currentPage;  else echo 1;?> / <?php echo ceil($this->getTotal() / $this->parameter->pageSize); ?></strong></button>
- <?php $this->pageLink('<button class="mdui-btn mdui-color-theme mdui-float-right" style="border-radius:0px 100px 100px 0px; width:30px;"><i class="mdui-icon material-icons">arrow_forward</i></button>','next'); ?></center>
+ <?php $this->pageLink('<button class="mdui-btn mdui-btn-icon mdui-color-theme mdui-float-left"><i class="mdui-icon material-icons">arrow_back</i></button>','prev'); ?>
+ <button class="mdui-btn" disabled><strong class="<?php
+ $style = Typecho_Widget::widget('Widget_Options')->style;
+ if ($style == "bg_style"){ ?>mdui-text-color-<?php echo Typecho_Widget::widget('Widget_Options')->icon_color; ?><?php }elseif ($style == "default_style"){}?>"><?php if($this->_currentPage>1) echo $this->_currentPage;  else echo 1;?> / <?php echo ceil($this->getTotal() / $this->parameter->pageSize); ?></strong></button>
+ <?php $this->pageLink('<button class="mdui-btn mdui-btn-icon mdui-color-theme mdui-float-right"><i class="mdui-icon material-icons">arrow_forward</i></button>','next'); ?></center>
  </div></div>
  </div>
  <div style="margin-top:10px;"></div>
