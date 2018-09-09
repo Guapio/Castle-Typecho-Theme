@@ -2,7 +2,7 @@
 一个基于MDUI编写的MD风格的Typecho主题
 
 ## Version
-1.0.0
+1.1.0
 
 ## 相关链接
 Demo站点：https://ohmyga.net
