@@ -9,9 +9,9 @@
  <div class="mdui-col-md-6 mdui-col-offset-md-3">
   <div class="mdui-card">
    <div class="mdui-card-media">
-    <img src="<?php if(isset($this->fields->img)){echo ' '.$this->fields->img;}else{
+    <img src="<?php if(!empty($this->fields->wzimg)){ echo ''.$this->fields->wzimg; }else{
 		$ll = rand(1,5);
-		$this->options->themeUrl("api/pic.php?l=".$ll."");}?>" class="mdui-img-fluid">
+		$this->options->themeUrl("api/pic.php?l=".$ll.""); }?>" class="mdui-img-fluid">
 	<div class="mdui-card-media-covered">
      <div class="mdui-card-primary">
      <div class="mdui-card-primary-title"><?php $this->title() ?></div>
