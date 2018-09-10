@@ -121,7 +121,7 @@ Author: ohmyga (https://ohmyga.net/)
 
 .index-animation {    
     animation: index-animation;/*动画名称*/  
-    animation-duration: 1s;/*动画持续时间*/  
-    -webkit-animation:index-animation 1s;/*针对webkit内核*/  
+    animation-duration: 0.2s;/*动画持续时间*/  
+    -webkit-animation:index-animation 0.2s;/*针对webkit内核*/  
 }
 /* index动画结束 */

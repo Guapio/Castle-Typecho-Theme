@@ -56,7 +56,7 @@ a {
     &nbsp; &nbsp;<i class="mdui-icon material-icons">textsms</i>
     <label class="mdui-textfield-label">留下你成为大佬的想法吧~</label>
     <textarea class="mdui-textfield-input" name="text" type="text" id="owo-input"><?php $this->remember('text'); ?></textarea>
-   </div><?php $comments->smilies(); ?>
+   </div>
    <button type="button" mdui-tooltip="{content: 'OwO表情'}" mdui-menu="{target: '#owo', align: 'right', position: 'top'}" class="mdui-btn mdui-btn-icon mdui-float-right bq"><i class="mdui-icon material-icons">sentiment_very_satisfied</i></button>
    <div class="mdui-menu owo-css" id="owo">
     <div class="mdui-tab mdui-tab-full-width" mdui-tab>

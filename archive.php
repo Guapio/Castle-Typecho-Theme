@@ -55,8 +55,7 @@ a{
    </div><br></div>
   <?php endwhile; ?>
  <br><br><br>
- <center>
- <?php $this->pageLink('<button class="mdui-btn mdui-btn-icon mdui-color-theme mdui-float-left"><i class="mdui-icon material-icons">arrow_back</i></button>','prev'); ?>
+  <?php $this->pageLink('<button class="mdui-btn mdui-btn-icon mdui-color-theme mdui-float-left"><i class="mdui-icon material-icons">arrow_back</i></button>','prev'); ?>
  <button class="mdui-btn" disabled><strong class="<?php if ($style == "bg_style"){ ?>mdui-text-color-<?php echo Typecho_Widget::widget('Widget_Options')->icon_color; ?><?php }elseif ($style == "default_style"){}?>"><?php if($this->_currentPage>1) echo $this->_currentPage;  else echo 1;?> / <?php echo ceil($this->getTotal() / $this->parameter->pageSize); ?></strong></button>
  <?php $this->pageLink('<button class="mdui-btn mdui-btn-icon mdui-color-theme mdui-float-right"><i class="mdui-icon material-icons">arrow_forward</i></button>','next'); ?></center>
  </div></div>
