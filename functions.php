@@ -150,6 +150,13 @@ function themeConfig($form) {
 }
 
 function themeFields($layout) {
+	?>
+    <style>
+    #custom-field input{
+        width:100%;
+    }
+    </style>
+    <?php
     $wzimg = new Typecho_Widget_Helper_Form_Element_Text('wzimg', NULL, NULL, _t('文章封面图'), _t('如果不填将显示随机封面图'));
     $layout->addItem($wzimg);
 }

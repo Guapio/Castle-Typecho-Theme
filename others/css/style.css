@@ -11,7 +11,7 @@ Author: ohmyga (https://ohmyga.net/)
 .moe-main {
     padding: 1px;
     width: 100%;
-    height: 100%;
+    height: 100%
  }
  
 .moe-menu-img {
@@ -61,3 +61,67 @@ Author: ohmyga (https://ohmyga.net/)
 .avatar {
 	border-radius:100px;
 }
+
+.text-color a{
+	color:#fff; 
+	text-decoration:none;
+}
+
+.bq {
+    position: absolute;
+    top: 144px;
+    right: 20px;
+    float: right;
+    padding: 3px;
+    border-radius: 3px;
+    color: rgba(0,0,0,.54);
+    cursor: pointer;
+    -webkit-transition: all .2s;
+    transition: all .2s;
+}
+
+.owo-css {
+	width: 300px;
+	height: 150px;
+}
+
+.smiley{
+	width: 25px;
+	height: 25px;
+}
+
+/* index动画开始 */
+@keyframes index-animation {  
+    0% {opacity: 0;}/*初始状态 透明度为0*/  
+	10% {opacity: 0.1;}/*过渡状态 透明度为0.1*/ 
+    20% {opacity: 0.2;}/*过渡状态 透明度为0.2*/  
+	30% {opacity: 0.3;}/*过渡状态 透明度为0.3*/ 
+	40% {opacity: 0.4;}/*过渡状态 透明度为0.4*/
+    50% {opacity: 0.5;}/*过渡状态 透明度为0.5*/ 	
+	60% {opacity: 0.6;}/*过渡状态 透明度为0.6*/
+	70% {opacity: 0.7;}/*过渡状态 透明度为0.7*/ 
+    80% {opacity: 0.8;}/*过渡状态 透明度为0.8*/
+    90% {opacity: 0.9;}/*过渡状态 透明度为0.9*/   	
+    100% {opacity: 1;}/*结束状态 透明度为1*/   
+}
+
+@-webkit-keyframes index-animation {/*针对webkit内核*/  
+    0% {opacity: 0;}/*初始状态 透明度为0*/  
+	10% {opacity: 0.1;}/*过渡状态 透明度为0.1*/ 
+    20% {opacity: 0.2;}/*过渡状态 透明度为0.2*/  
+	30% {opacity: 0.3;}/*过渡状态 透明度为0.3*/ 
+	40% {opacity: 0.4;}/*过渡状态 透明度为0.4*/
+    50% {opacity: 0.5;}/*过渡状态 透明度为0.5*/ 	
+	60% {opacity: 0.6;}/*过渡状态 透明度为0.6*/
+	70% {opacity: 0.7;}/*过渡状态 透明度为0.7*/ 
+    80% {opacity: 0.8;}/*过渡状态 透明度为0.8*/
+    90% {opacity: 0.9;}/*过渡状态 透明度为0.9*/   	
+    100% {opacity: 1;}/*结束状态 透明度为1*/ 
+}  
+
+.index-animation {    
+    animation: index-animation;/*动画名称*/  
+    animation-duration: 0.2s;/*动画持续时间*/  
+    -webkit-animation:index-animation 0.2s;/*针对webkit内核*/  
+}
+/* index动画结束 */
