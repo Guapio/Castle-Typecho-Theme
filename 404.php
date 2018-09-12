@@ -1,6 +1,7 @@
 <?php
  if (!defined('__TYPECHO_ROOT_DIR__')) exit;
  $this->need('header.php');
+ $style = Typecho_Widget::widget('Widget_Options')->style;
  ?>
  <!-- 内容区 -->
  <div class="mdui-container" id="moe-main">
