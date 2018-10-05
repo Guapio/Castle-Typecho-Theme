@@ -1,4 +1,10 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
+</div>
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
+<script type="text/javascript"> 
+
+</script> 
 <?php if ($this->options->top && in_array('topbtn', $this->options->top)): ?>
 <!-- 回到顶部 -->
 <script type="text/javascript">

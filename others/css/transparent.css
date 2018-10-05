@@ -1,0 +1,33 @@
+@charset "utf-8";
+/*
+Theme: Castle
+Link: https://github.com/ohmyga233/castle-Typecho-Theme
+Author: ohmyga (https://ohmyga.net/)
+Transparent Css
+*/
+
+/* 背景部分(图片链接在header.php内) */
+body {
+	background-size: cover; 
+	background-position: 50% 50%; 
+	background-attachment: fixed; 
+	background-repeat: no-repeat; 
+  }
+  
+/* 卡片 */
+.mdui-card { 
+    background-color:rgba(255, 255, 255, 0.6);
+}
+
+/* 头部 */
+.moe-header { 
+    background-color:rgba(0, 0, 0, 0);
+	color: #000; 
+}
+  
+/* 菜单 */
+#menu {
+    background: rgba(255, 255, 255, 0.2);
+    font-size: 50px;
+    color:#000;
+}

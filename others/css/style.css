@@ -1,19 +1,11 @@
-﻿/*
+@charset "utf-8";
+/*
 Theme: Castle
 Link: https://github.com/ohmyga233/castle-Typecho-Theme
 Author: ohmyga (https://ohmyga.net/)
 */
 
-#moe-footer {
-    padding: 20px;
- }
-
-.moe-main {
-    padding: 1px;
-    width: 100%;
-    height: 100%
- }
- 
+/* 默认样式下侧边抽屉信息框 */
 .moe-menu-img {
     position: relative;
     width: 100%;
@@ -48,25 +40,28 @@ Author: ohmyga (https://ohmyga.net/)
     background-size: cover;
 }
 
-#menu {
-    background: #fff;
-    font-size: 50px;
-    color:#000;
+/* 文章TAG标签颜色 */
+.tages-style a {
+	color: #fff;
 }
 
-.moe-links {
-	text-decoration:none;
+/* POST文章页封面图固定大小 */
+.moe-wzimg {
+    display: block cursor: pointer;
+    max-height: 245px;
+    min-height: 245px;
+    height: 245px;
+    background-position: 50% 50%;
+    background-size: cover;
 }
 
-.avatar {
-	border-radius:100px;
-}
-
+/* POST页面底部上下篇文字链接样式 */
 .text-color a{
 	color:#fff; 
 	text-decoration:none;
 }
 
+/* 表情部分样式 */
 .bq {
     position: absolute;
     top: 144px;
@@ -121,7 +116,43 @@ Author: ohmyga (https://ohmyga.net/)
 
 .index-animation {    
     animation: index-animation;/*动画名称*/  
-    animation-duration: 1s;/*动画持续时间*/  
-    -webkit-animation:index-animation 1s;/*针对webkit内核*/  
+    animation-duration: 0.2s;/*动画持续时间*/  
+    -webkit-animation:index-animation 0.2s;/*针对webkit内核*/  
 }
 /* index动画结束 */
+
+/* 头像360°旋转 */
+.headimg-xz {
+    margin: 0 auto;
+    -webkit-transition: -webkit-transform 0.5s ease-out;
+    -moz-transition: -moz-transform 0.5s ease-out;
+    -o-transition: -o-transform 0.5s ease-out;
+    -ms-transition: -ms-transform 0.5s ease-out;
+}
+
+.headimg-xz:hover {
+    -webkit-transform: rotateZ(360deg);
+    -moz-transform: rotateZ(360deg);
+    -o-transform: rotateZ(360deg);
+    -ms-transform: rotateZ(360deg);
+    transform: rotateZ(360deg);
+}
+
+/* 评论区头像 */
+.comments-avatar .avatar {
+    border-radius: 100px;
+}
+
+/* 文章页头像 */
+.mdui-card-header-avatar img {
+	border-radius: 100px;
+	width: 40px;
+	height: 40px;
+}
+
+/* 工具栏管理员菜单头像 */
+.mdui-list-item img {
+	border-radius: 100px;
+	width: 25px;
+	height: 25px;
+}

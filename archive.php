@@ -28,23 +28,29 @@ a{
   <?php while($this->next()): ?>
   <div class="mdui-col-md-6 mdui-col-offset-md-3">
   <div class="mdui-card mdui-hoverable">
-   <div class="mdui-card-media">
-    <img src="<?php 
-		$ll = rand(1,5);
-		$wimg = "r";
-		if ($wimg == "r") {
-		$this->options->themeUrl("api/pic.php?l=".$ll.""); }
-		?>" class="mdui-img-fluid">
-	<div class="mdui-card-media-covered">
+   <div class="mdui-card-media moe-wzimg" data-original="<?php $wzimg = $this->fields->wzimg;
+	 if(!empty($wzimg)){
+	     echo ''.$this->fields->wzimg; 
+	 }else{
+	 	$ll = rand(1,5);
+	 	$this->options->themeUrl("api/pic.php?l=".$ll."");} ?>" style="background-image: url('<?php $wzimg = $this->fields->wzimg;
+	 if(!empty($wzimg)){
+	     echo ''.$this->fields->wzimg; 
+	 }else{
+	 	$ll = rand(1,5);
+	 	$this->options->themeUrl("api/pic.php?l=".$ll."");} ?>');">
+    <div class="mdui-card-media-covered">
      <div class="mdui-card-primary">
-     <div class="mdui-card-primary-title"><?php $this->title() ?></div>
-     <div class="mdui-card-primary-subtitle"><i class="mdui-icon material-icons">local_offer</i> <?php $this->category(','); ?><div class="mdui-float-right"><i class="mdui-icon material-icons">forum</i>评论: <?php $this->commentsNum('%d 条'); ?></div></div>
-    </div>
+      <div class="mdui-card-primary-title">
+	   <a class="mdui-text-color-white-text" href="<?php $this->permalink() ?>" title="点击标题继续阅读 《<?php $this->title() ?>》" style="text-decoration:none;"><?php $this->sticky(); $this->title() ?></a>
+      </div>
+	  <div class="mdui-card-primary-subtitle"><i class="mdui-icon material-icons">local_offer</i> <span class="tages-style"><?php $this->category(','); ?></span><div class="mdui-float-right"><i class="mdui-icon material-icons">forum</i>评论: <?php $this->commentsNum('%d 条'); ?></div></div>
+     </div>
     </div>
    </div>
    <div class="mdui-card-header mdui-float-left">
     <?php if ($this->options->iwa && in_array('authimg', $this->options->iwa)): ?>
-	<div class="mdui-card-header-avatar "><?php echo $this->author->gravatar(32);?></div>
+	<div class="mdui-card-header-avatar mdui-hoverable headimg-xz"><?php echo $this->author->gravatar(640);?></div>
 	<?php else: ?>
     <img class="mdui-card-header-avatar" src="<?php $this->options->headimg(); ?>"/>
 	<?php endif; ?>

@@ -2,6 +2,9 @@
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
 function themeConfig($form) {
+	echo '<link rel="stylesheet" type="text/css" href="'.Helper::options()->themeUrl.'/others/css/functions.css">';
+	echo '<script type="text/javascript" src="https://www.ohmyga.net/Castle/version.php"></script>';
+	echo '<center><div id="version" title="别问我为什么不用https://api.ohmyga.net/，因为速度太慢了233">Castle最新版本: <span style="color: #F44336;"><script>version()</script></span><br>Castle当前版本: <span style="color: #F44336;">1.1.5</span><br>设置按钮在右下角方便点击</div></center>';
 	$themecolor = new Typecho_Widget_Helper_Form_Element_Select('themecolor',array(
     'red' => 'Red',
     'pink' => 'Pink',
@@ -78,8 +81,9 @@ function themeConfig($form) {
   $tools = new Typecho_Widget_Helper_Form_Element_Checkbox('tools', array(
   'searchbtnm' => _t('显示移动端搜索按钮'),
   'searchbtnp' => _t('显示PC端搜索按钮'),
+  'showlogin' => _t('显示登陆按钮'),
   ),
-  array('searchbtnm', 'searchbtnp'), _t('工具栏'));
+  array('searchbtnm', 'searchbtnp', 'showlogin'), _t('工具栏'));
   $form->addInput($tools->multiMode());
   
   $menu = new Typecho_Widget_Helper_Form_Element_Checkbox('menu', array(
@@ -87,10 +91,9 @@ function themeConfig($form) {
 	'showarchives' => _t('显示按月归档'),
     'showcategory' => _t('显示文章分类'),
     'showpage' => _t('显示独立页面'),
-	'showlogin' => _t('显示登陆按钮'),
 	'showthemename' => _t('显示主题名(侧边可不显示 但底部必须保留)'),
   ),
-  array('closemenu', 'showarchives', 'showcategory', 'showpage', 'showlogin', 'showthemename'), _t('抽屉侧边栏'));
+  array('closemenu', 'showarchives', 'showcategory', 'showpage', 'showthemename'), _t('抽屉侧边栏'));
   $form->addInput($menu->multiMode());
   
   $iwa = new Typecho_Widget_Helper_Form_Element_Checkbox('iwa', array(
@@ -104,8 +107,9 @@ function themeConfig($form) {
   
   $others_setting = new Typecho_Widget_Helper_Form_Element_Checkbox('others_setting', array(
   'origintitile' => _t('失去/恢复焦点标题变化'),
+  'mouse' => _t('将鼠标指针替换为滑稽'),
   ),
-  array('origintitile'), _t('其他设置'));
+  array('origintitile', 'mouse'), _t('其他设置'));
   $form->addInput($others_setting->multiMode());
   
   $sqjd = new Typecho_Widget_Helper_Form_Element_Text('sqjd', NULL, '页面崩溃了Σ( ° △ °|||)︴', _t('失去焦点标题'), _t('输入失去焦点时显示的标题，必须开启上面开关才有效'));
@@ -117,7 +121,7 @@ function themeConfig($form) {
   $postcid = new Typecho_Widget_Helper_Form_Element_Text('postcid', NULL, NULL, _t('置顶文章CID'), _t('输入要置顶的文章Cid，多篇用,分格'));
   $form->addInput($postcid);
   
-  $bgimg = new Typecho_Widget_Helper_Form_Element_Text('bgimg', NULL, 'https://i.loli.net/2018/09/09/5b94db35f2295.jpg', _t('背景图'), _t('背景图(确保选择了背景图风格)，不填写显示/others/images/bg.jpg图片)'));
+  $bgimg = new Typecho_Widget_Helper_Form_Element_Text('bgimg', NULL, '', _t('背景图'), _t('背景图(确保选择了背景图风格)，不填写显示/others/images/bg.jpg图片)'));
   $form->addInput($bgimg);
   
   $headimg = new Typecho_Widget_Helper_Form_Element_Text('headimg', NULL, NULL, _t('头像及站点LOGO'), _t('输入侧边抽屉头像及站点LOGO图片链接，不填写将不显示<br>QQ头像接口：https://q2.qlogo.cn/headimg_dl?dst_uin=QQ号&spec=640'));
@@ -160,3 +164,10 @@ function themeFields($layout) {
     $wzimg = new Typecho_Widget_Helper_Form_Element_Text('wzimg', NULL, NULL, _t('文章封面图'), _t('如果不填将显示随机封面图'));
     $layout->addItem($wzimg);
 }
+
+/* 关闭反垃圾评论功能 确保Pjax能正常使用 */
+/* Pjax还远着 研究中... */
+/*
+function themeInit($archive){
+   Helper::options()->commentsAntiSpam = false; 
+}*/

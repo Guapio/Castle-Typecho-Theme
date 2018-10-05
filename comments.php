@@ -11,16 +11,16 @@
   $commentLevelClass = $comments->levels > 0 ? ' comment-child' : ' comment-parent';
 ?>
 </ol>
-<div class="mdui-card" id="<?php $comments->theId(); ?>">
+<div class="mdui-card mdui-hoverable" id="<?php $comments->theId(); ?>">
  <div class="mdui-card-header mdui-float-left">
-  <div class="mdui-card-header-avatar mdui-img-fluid"><?php $comments->gravatar('40', ''); ?></div>
+  <div class="comments-avatar mdui-card-header-avatar mdui-img-fluid headimg-xz mdui-hoverable"><?php $comments->gravatar('40', ''); ?></div>
   <div class="mdui-card-header-title"><font color="#000"><?php $comments->author(); ?></font></div>
   <div class="mdui-card-header-subtitle">Time: <?php $comments->date('Y-m-d H:i'); ?></div>
  </div>
+ <?php $comments->reply('<button id="reply" class="mdui-btn mdui-btn-icon mdui-ripple mdui-text-color-theme-accent mdui-float-right" style="margin-top: 5px; margin-right: 5px;"><i class="mdui-icon material-icons">reply</i></button>'); ?>
  <br><br><br><br>
- <div class="mdui-card-content mdui-typo" id="comment"><?php $comments->content(); ?>
-  <br>
-  <?php $comments->reply('<button class="mdui-btn mdui-ripple mdui-text-color-theme-accent">回复</button>'); ?>
+ <div class="mdui-card-content mdui-typo" id="comment">
+ <?php $comments->content(); ?>
   </div>
   <?php if ($comments->children) { ?>
   <div class="mdui-container" id="moe-main">
@@ -29,6 +29,7 @@
    <br>
    <?php } ?>
 </div>
+
 <?php } ?>
 <style>
 a {
@@ -186,6 +187,29 @@ a {
  var inst = new mdui.Tooltip('#send-pl', {
   content: '发送评论'
  });
+ var inst = new mdui.Tooltip('#reply', {
+  content: '回复'
+ });
+</script>
+
+<script>
+$("input#email").blur(function() {
+  var _email = $(this).val();
+  if (_email != '') {
+    $.ajax({
+      type: 'GET',
+      data: {
+        action: 'ajax_avatar_get',  
+        form: <?php $this->commentUrl() ?>, // 修改为你的Ajax路径
+        email: _email
+      },
+      success: function(data) {
+        $('.avatar').attr('src', data); // 修改为你自己的头像标签
+      }
+    }); // end ajax
+  }
+  return false;
+});
 </script>
 
 <script type="text/javascript">

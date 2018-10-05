@@ -8,19 +8,26 @@
  <div class="mdui-row">
  <div class="mdui-col-md-6 mdui-col-offset-md-3">
   <div class="mdui-card">
-   <div class="mdui-card-media">
-    <img src="<?php if(!empty($this->fields->wzimg)){ echo ''.$this->fields->wzimg; }else{
-		$ll = rand(1,5);
-		$this->options->themeUrl("api/pic.php?l=".$ll.""); }?>" class="mdui-img-fluid">
-	<div class="mdui-card-media-covered">
+   <div class="mdui-card-media moe-wzimg" data-original="<?php $wzimg = $this->fields->wzimg;
+	 if(!empty($wzimg)){
+	     echo ''.$this->fields->wzimg; 
+	 }else{
+	 	$ll = rand(1,5);
+	 	$this->options->themeUrl("api/pic.php?l=".$ll."");} ?>" style="background-image: url('<?php $wzimg = $this->fields->wzimg;
+	 if(!empty($wzimg)){
+	     echo ''.$this->fields->wzimg; 
+	 }else{
+	 	$ll = rand(1,5);
+	 	$this->options->themeUrl("api/pic.php?l=".$ll."");} ?>');">
+    <div class="mdui-card-media-covered">
      <div class="mdui-card-primary">
-     <div class="mdui-card-primary-title"><?php $this->title() ?></div>
-    </div>
+      <div class="mdui-card-primary-title"><?php $this->title() ?></div>
+	 </div>
     </div>
    </div>
    <div class="mdui-card-header mdui-float-left">
     <?php if ($this->options->iwa && in_array('authimg', $this->options->iwa)): ?>
-	<div class="mdui-card-header-avatar "><?php echo $this->author->gravatar(32);?></div>
+	<div class="mdui-card-header-avatar mdui-hoverable headimg-xz"><?php echo $this->author->gravatar(640);?></div>
 	<?php else: ?>
     <img class="mdui-card-header-avatar" src="<?php $this->options->headimg(); ?>"/>
 	<?php endif; ?>

@@ -12,7 +12,7 @@
   <div class="mdui-card">
    <div class="mdui-card-header mdui-float-left">
     <?php if ($this->options->iwa && in_array('authimg', $this->options->iwa)): ?>
-	<div class="mdui-card-header-avatar "><?php echo $this->author->gravatar(32);?></div>
+	<div class="mdui-card-header-avatar mdui-hoverable headimg-xz"><?php echo $this->author->gravatar(640);?></div>
 	<?php else: ?>
     <img class="mdui-card-header-avatar" src="<?php $this->options->headimg(); ?>"/>
 	<?php endif; ?>

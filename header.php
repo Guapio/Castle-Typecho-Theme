@@ -1,4 +1,7 @@
-<?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
+<?php
+if (!defined('__TYPECHO_ROOT_DIR__')) exit;
+$style = Typecho_Widget::widget('Widget_Options')->style;
+?>
 <html>
  <head>
   <meta http-equiv="content-type" content="text/html"; charset="utf-8" />
@@ -16,16 +19,23 @@
  
   <!-- CSS -->
   <!-- MDUI CSS -->
-  <link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/mdui/0.4.1/css/mdui.min.css">
+  <link rel="stylesheet" href="<?php $this->options->themeUrl('others/mdui/css/mdui.min.css'); ?>">
   <!-- 主题CSS -->
   <link rel="stylesheet" href="<?php $this->options->themeUrl('others/css/style.css'); ?>">
+<?php if ($style == "bg_style"){ ?>
+  <link rel="stylesheet" href="<?php $this->options->themeUrl('others/css/transparent.css'); ?>">
+<?php }elseif ($style == "default_style"){} ?>
+<?php if ($this->options->others_setting && in_array('mouse', $this->options->others_setting)): ?>
+  <!-- 鼠标指针CSS -->
+  <link rel="stylesheet" href="<?php $this->options->themeUrl('others/css/mouse.css'); ?>">
+<?php endif; ?>
   <!-- Font Awesome -->
   <link href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
  
+ 
   <!-- JS -->
-  <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
   <!-- MDUI JS -->
-  <script src="https://cdnjs.loli.net/ajax/libs/mdui/0.4.1/js/mdui.min.js"></script>
+  <script src="<?php $this->options->themeUrl('others/mdui/js/mdui.min.js'); ?>"></script>
  
   <!-- 自适应移动端 -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -33,44 +43,26 @@
   <!-- Typecho其他head信息 -->
   <?php $this->header(); ?>
   
-  <?php
-  $style = Typecho_Widget::widget('Widget_Options')->style;
-  if ($style == "bg_style"){ ?>
+<?php if ($style == "bg_style"){ ?>
   <!-- bg_style -->
   <style>
   body{ 
     background-image: url(<?php if ($this->options->bgimg){ $this->options->bgimg(); }else{ $this->options->themeUrl("others/images/bg.jpg"); }?>); 
-	background-size: cover; 
-	background-position: 50% 50%; 
-	background-attachment: fixed; 
-	background-repeat: no-repeat; 
-  } 
-
-  .mcname-header{ 
-    background-color:rgba(0, 0, 0, 0);
-	color: #000; 
-  }
-
-  .mdui-card{ 
-    background-color:rgba(255, 255, 255, 0.6);
-  }
-  
-  #menu {
-    background: rgba(255, 255, 255, 0.2);
-    font-size: 50px;
-    color:#000;
   }
   </style>
-  <?php }elseif ($style == "default_style"){ }?>
+<?php }elseif ($style == "default_style"){ }?>
+  <!--[if IE]>
+   <script type="text/javascript">
+    if (!!window.ActiveXObject || "ActiveXObject" in window) {
+     alert('请抛弃万恶的IE浏览器吧！请更换浏览器访问本博客呢……');
+    }
+   </script>
+  <![endif]-->
  </head>
  
- <body class="mdui-theme-primary-<?php echo Typecho_Widget::widget('Widget_Options')->themecolor; ?> mdui-theme-accent-<?php echo Typecho_Widget::widget('Widget_Options')->accentcolor; ?> mdui-appbar-with-toolbar">
- <!--[if lt IE 8]>
-    <div class="browsehappy" role="dialog"><?php _e('当前网页 <strong>不支持</strong> 你正在使用的浏览器. 为了正常的访问, 请 <a href="http://browsehappy.com/">升级你的浏览器</a>'); ?>.</div>
- <![endif]-->
+ <body class="mdui-theme-primary-<?php echo Typecho_Widget::widget('Widget_Options')->themecolor; ?> mdui-theme-accent-<?php echo Typecho_Widget::widget('Widget_Options')->accentcolor; ?> mdui-appbar-with-toolbar" <?php if ($style == "bg_style"){}elseif ($style == "default_style"){?>style="background: #F5F5F5;"<?php } ?>>
   <!-- 头部 -->
   <header class="<?php if ($style == "bg_style"){ ?>mdui-appbar mdui-shadow-0 mdui-appbar-fixed mdui-headroom mdui-headroom-pinned-top mcname-header<?php }elseif ($style == "default_style"){?>mdui-appbar mdui-appbar-fixed mdui-headroom<?php } ?>">
-  <div class="mdui-progress mdui-hidden" id="load"><div class="mdui-progress-indeterminate"></div></div>
    <div class="<?php if ($style == "bg_style"){ ?>mdui-toolbar mdui-appbar-scroll-hide<?php }elseif ($style == "default_style"){?>mdui-toolbar mdui-color-theme<?php } ?>">
     <span class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#menu', swipe: true}"><i class="mdui-icon material-icons <?php if ($style == "bg_style"){ ?>mdui-text-color-<?php echo Typecho_Widget::widget('Widget_Options')->icon_color; ?><?php }elseif ($style == "default_style"){}?>">menu</i></span>
     <a href="<?php $this->options->siteUrl(); ?>" class="mdui-typo-title <?php if ($style == "bg_style"){ ?>mdui-text-color-<?php echo Typecho_Widget::widget('Widget_Options')->icon_color; ?><?php }elseif ($style == "default_style"){}?>" style="text-shadow:1px 1px 0px #616161;"><strong><?php $this->options->title() ?></strong></a>
@@ -91,6 +83,40 @@
 	 <span class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search-ck'}"><i class="mdui-icon material-icons <?php if ($style == "bg_style"){ ?>mdui-text-color-<?php echo Typecho_Widget::widget('Widget_Options')->icon_color; ?><?php }elseif ($style == "default_style"){}?>">search</i></span>
 	 <?php endif; ?>
 	</div>
+	<?php if ($this->options->tools && in_array('showlogin', $this->options->tools)): ?>
+	<span class="mdui-btn mdui-btn-icon <?php if ($style == "bg_style"){ ?>mdui-text-color-<?php echo Typecho_Widget::widget('Widget_Options')->icon_color; ?><?php }elseif ($style == "default_style"){}?>" mdui-menu="{target: '#admin-menu', covered: 'true'}"><i class="mdui-icon material-icons">account_circle</i></span>
+	<!-- Admin弹出窗口 -->
+	<ul class="mdui-menu mdui-list" id="admin-menu">
+	<?php if($this->user->hasLogin()): ?>
+	 <li class="mdui-list-item mdui-ripple">
+	 <div class="mdui-list-item"><?php if ($this->options->iwa && in_array('authimg', $this->options->iwa)): ?><?php echo $this->author->gravatar(640);?><?php else: ?><img src="<?php $this->options->headimg(); ?>"/><?php endif; ?></div>
+     <a href="<?php $this->options->profileUrl(); ?>"><strong>HI,<?php $this->user->screenName(); ?>!</strong></a>
+     </li>
+	 
+     <li class="mdui-list-item mdui-ripple">
+	 <i class="mdui-list-item mdui-icon material-icons">account_circle</i>
+     <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/admin">进入后台</a>
+     </li>
+	 
+     <li class="mdui-list-item mdui-ripple">
+	 <i class="mdui-list-item mdui-icon material-icons">keyboard_tab</i>
+     <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/index.php/action/logout">注销登陆</a>
+     </li>
+	 
+	 <?php else: ?>
+	 <li class="mdui-list-item mdui-ripple">
+	 <i class="mdui-list-item mdui-icon material-icons">account_circle</i>
+     <a><strong>HI!</strong></a>
+     </li>
+     
+	 <li class="mdui-list-item mdui-ripple">
+	 <i class="mdui-list-item mdui-icon material-icons">lock</i>
+     <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/admin/login.php">登陆</a>
+     </li>
+	 
+	 <?php endif; ?>
+    </ul>
+	<?php endif; ?>
    </div>
   </header>
   
@@ -114,7 +140,7 @@
   
 
   <!-- 侧边抽屉 -->
- <div class="mdui-drawer <?php if ($this->options->menu && in_array('closemenu', $this->options->menu)): ?>mdui-drawer-close<?php endif; ?>" id="menu">
+ <div class="mdui-shadow-3 mdui-drawer <?php if ($this->options->menu && in_array('closemenu', $this->options->menu)): ?>mdui-drawer-close<?php endif; ?>" id="menu">
  <?php if ($style == "bg_style"){ ?>
  <?php }elseif ($style == "default_style"){?>
  <?php if ($this->options->headbg): ?>
@@ -178,15 +204,6 @@
   </li>
   <?php endif; ?>
   
-  <?php if ($this->options->menu && in_array('showlogin', $this->options->menu)): ?>
-  <div class="mdui-divider"></div>
-  
-  <li class="mdui-list-item mdui-ripple">
-   <i class="mdui-list-item-icon mdui-icon material-icons <?php if ($style == "bg_style"){ ?>mdui-text-color-<?php echo Typecho_Widget::widget('Widget_Options')->icon_color; ?><?php }elseif ($style == "default_style"){}?>">account_circle</i>
-   <a href="<?php echo "http://".$_SERVER['SERVER_NAME']."/admin/"; ?>" class="mdui-list-item-content <?php if ($style == "bg_style"){ ?>mdui-text-color-<?php echo Typecho_Widget::widget('Widget_Options')->icon_color; ?><?php }elseif ($style == "default_style"){}?>">登陆</a>
-  </li>
-  <?php endif; ?>
-  
   <?php if ($this->options->menu && in_array('showthemename', $this->options->menu)): ?>
   <div class="mdui-divider"></div>
  
@@ -199,3 +216,5 @@
   </ul>
  </div>
  </div>
+
+ <div id="body">

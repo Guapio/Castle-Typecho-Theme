@@ -1,0 +1,59 @@
+@charset "utf-8";
+/*
+Theme: Castle
+Link: https://github.com/ohmyga233/castle-Typecho-Theme
+Author: ohmyga (https://ohmyga.net/)
+Castle - Functions's Style.
+*/
+
+/* 按钮部分 */
+
+/* 设置页保存按钮固定在右下角 */
+.typecho-option-submit {
+	position: fixed;
+	bottom: 10px;
+	right: 25px;
+	float: right;
+	z-index: 233;
+}
+
+/* 浮动阴影(来自MDUI) */
+.typecho-option-submit {
+	-webkit-transition:-webkit-box-shadow .25s cubic-bezier(.4,0,.2,1);
+	transition:-webkit-box-shadow .25s cubic-bezier(.4,0,.2,1);
+	transition:box-shadow .25s cubic-bezier(.4,0,.2,1);
+	transition:box-shadow .25s cubic-bezier(.4,0,.2,1),-webkit-box-shadow .25s cubic-bezier(.4,0,.2,1);
+	will-change:box-shadow;
+}
+
+.typecho-option-submit:focus,.typecho-option-submit:hover{
+	-webkit-box-shadow:0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12);
+	box-shadow:0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12);
+}
+
+/* 按钮部分结束 */
+
+
+/* ===================================================== */
+
+/* 定义鼠标样式 */
+html {
+	cursor: url(../images/cursor/1.png),default;
+}
+body {
+	cursor: url(../images/cursor/1.png),default;
+}
+a {
+	cursor: url(../images/cursor/2.png),default;
+}
+select {
+	cursor: url(../images/cursor/2.png),default;
+}
+option {
+	cursor: url(../images/cursor/2.png),default;
+}
+input {
+	cursor: url(../images/cursor/2.png),default;
+}
+
+/* ===================================================== */

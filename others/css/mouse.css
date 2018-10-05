@@ -1,0 +1,20 @@
+@charset "utf-8";
+/*
+Theme: Castle
+Link: https://github.com/ohmyga233/castle-Typecho-Theme
+Author: ohmyga (https://ohmyga.net/)
+Mouse Css
+*/
+
+/* 定义鼠标样式 */
+html {
+	cursor: url(../images/cursor/1.png),default;
+}
+
+body {
+	cursor: url(../images/cursor/1.png),default;
+}
+
+a {
+	cursor: url(../images/cursor/2.png),default;
+}
